@@ -1,0 +1,27 @@
+package com.example.demo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+
+import com.example.demo.model.User;
+import com.example.demo.repository.DataRepository;
+
+@SpringBootApplication
+@EnableEurekaClient
+@EnableZuulProxy
+public class SantenderZuulProxyApplication {
+
+
+	public static void main(String[] args) {
+		SpringApplication.run(SantenderZuulProxyApplication.class, args);
+	}
+	
+}

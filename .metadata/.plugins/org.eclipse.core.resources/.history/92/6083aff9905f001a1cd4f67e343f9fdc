@@ -1,0 +1,23 @@
+spring.application.name = santander-induction-apigateway
+server.port= 8765
+eureka.client.register-with-eureka= true
+eureka.client.fetch-registry = true
+
+zuul.routes.santender-zuul-proxy.path = /zuul/**
+zuul.routes.santender-zuul-proxy.serviceId = santender-zuul-proxy
+
+zuul.routes.santander-induction-web.path = /**
+zuul.routes.santander-induction-web.serviceId = santander-induction-web
+
+
+zuul.routes.santander-user-management.sensitiveHeaders=
+ribbon.ReadTimeout=60000
+
+
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2
+spring.datasource.url=jdbc:h2:file:~/login
+spring.datasource.username=sa
+spring.datasource.password=
+spring.datasource.driver-class-name=org.h2.Driver
+spring.jpa.properties.hibernate.hdm2ddl.auto=update

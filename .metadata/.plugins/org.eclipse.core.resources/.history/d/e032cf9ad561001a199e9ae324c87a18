@@ -1,0 +1,36 @@
+package com.example.demo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+
+import com.example.demo.model.User;
+import com.example.demo.repository.DataRepository;
+
+@SpringBootApplication
+@EnableEurekaClient
+public class SpringUserApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringUserApplication.class, args);
+	}
+
+	@Autowired
+	DataRepository dataRepository;
+
+	@PostConstruct
+	public void init()
+	{
+		List<User> users=new ArrayList<>(); 
+		users.add(new User(1,"harsh","password","harsh@gmail.com"));
+		users.add(new User(2,"ram","password","ramh@gmail.com"));
+		dataRepository.saveAll(users);				
+	}
+
+}

@@ -1,0 +1,35 @@
+package com.example.demo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.example.demo.model.User;
+import com.example.demo.model.User.UserRole;
+import com.example.demo.repo.UserRepo;
+
+@SpringBootApplication
+public class SpringUsersApplication {
+
+	@Autowired
+	UserRepo userRepo;
+	public static void main(String[] args) {
+		SpringApplication.run(SpringUsersApplication.class, args);
+	}
+
+	@PostConstruct
+	public void init()
+	{
+		System.out.println("in the init method");
+		List<User> list=new ArrayList<>();
+		list.add(new User("10", "harsh@gmail.com", "password", UserRole.USER, true));
+		
+		userRepo.saveAll(list);
+		
+	}
+}

@@ -1,0 +1,99 @@
+package com.example.demo.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="Details")
+public class User {
+
+	@Id
+	private String psid;
+	private String email;
+	private String password;
+	public enum UserRole {
+		USER,
+		ADMIN
+	}
+	private UserRole userRole;
+	private Boolean userActive = false;
+	
+	
+	public User() {
+		super();
+	}
+
+
+	public User(String psid, String email, String password, UserRole userRole, Boolean userActive) {
+		super();
+		this.psid = psid;
+		this.email = email;
+		this.password = password;
+		this.userRole = userRole;
+		this.userActive = userActive;
+	}
+
+
+	@Override
+	public String toString() {
+		return "User [psid=" + psid + ", email=" + email + ", password=" + password + ", userRole=" + userRole
+				+ ", userActive=" + userActive + "]";
+	}
+
+
+	public String getPsid() {
+		return psid;
+	}
+
+
+	public void setPsid(String psid) {
+		this.psid = psid;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public UserRole getUserRole() {
+		return userRole;
+	}
+
+
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
+	}
+
+
+	public Boolean isUserActive() {
+		return userActive;
+	}
+
+
+	public void setUserActive(Boolean userActive) {
+		this.userActive = userActive;
+	}
+	
+	
+	
+	
+	
+}

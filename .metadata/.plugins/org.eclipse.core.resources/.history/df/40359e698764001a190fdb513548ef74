@@ -1,0 +1,23 @@
+spring.application.name = santander-induction-apigateway
+server.port= 8765
+eureka.client.register-with-eureka= true
+eureka.client.fetch-registry = true	
+
+zuul.routes.santander-user.path = /user/**
+zuul.routes.santander-user.serviceId = santander-user
+
+
+zuul.routes.santander-induction-web.path = /**
+zuul.routes.santander-induction-web.serviceId = santander-induction-web
+zuul.routes.santander-user.sensitiveHeaders=
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+ribbon.ReadTimeout=60000
+
+
+
+
+
+zuul.routes.santander-user-management.sensitiveHeaders=
+ribbon.ReadTimeout=60000
+
+

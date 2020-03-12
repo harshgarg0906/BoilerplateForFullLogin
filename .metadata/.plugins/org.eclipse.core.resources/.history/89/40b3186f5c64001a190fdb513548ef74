@@ -1,0 +1,20 @@
+spring.application.name = santander-induction-apigateway
+server.port= 8765
+eureka.client.register-with-eureka= true
+eureka.client.fetch-registry = true	
+
+zuul.routes.santander-user.path = /user/**
+zuul.routes.santander-user.serviceId = SANTANDER-USER
+
+
+zuul.routes.santander-induction-web.path = /**
+zuul.routes.santander-induction-web.serviceId = santander-induction-web
+
+
+
+
+
+zuul.routes.santander-user-management.sensitiveHeaders=
+ribbon.ReadTimeout=60000
+
+

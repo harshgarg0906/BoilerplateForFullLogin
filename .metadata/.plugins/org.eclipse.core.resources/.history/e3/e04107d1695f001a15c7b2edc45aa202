@@ -1,0 +1,34 @@
+package com.example.demo.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import com.example.demo.filter.JwtFilter;
+
+
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable().authorizeRequests().and().antMatcher("/**").authorizeRequests().anyRequest()
+				.authenticated().and().addFilterAfter(new JwtFilter(), BasicAuthenticationFilter.class)
+				.authorizeRequests();
+	}
+
+	// For ignoring security of some api endpoints
+	@Override
+	public void configure(WebSecurity webSecurity) {
+		System.out.println("in web security");
+		webSecurity.ignoring().antMatchers("/user/login","/user/success","/user/failure","/user/invalid","/user/users",
+				"/assets/**", "/*.js", "/*.css","/*.eot", "/*.svg" ,"/*.woff2" ,"/*.ttf" ,"/*.woff" ,"/*.jpg",
+				"/*.html" ,"/*.scss" ,"/*.png" ,"/*.ico","/*.js" , "/*.bootstrap.min.css" );
+		
+		
+	}
+}

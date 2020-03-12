@@ -1,0 +1,15 @@
+spring.application.name = santander-user
+server.port= 8080
+eureka.client.register-with-eureka= true
+eureka.client.fetch-registry = true	
+google.base.url=https://accounts.google.com/o/oauth2/auth
+#google.clientId=370572163099-i0k973kv11bmglqutnq4u7ogjnbijsoq.apps.googleusercontent.com
+#google.clientSecret=d76mWftyucrEd1dbKrh9rNwl
+
+#google.clientId=378285776259-uncql5u3hm819459jkobu3dj0gobc0hs.apps.googleusercontent.com
+#google.clientSecret=BE89Su2iqstasPlFyGci_DGy
+#google.redirect.uri=http://localhost:8090/user-service/auth/auth/login
+
+spring.security.oauth2.client.registration.google.client-id=370572163099-i0k973kv11bmglqutnq4u7ogjnbijsoq.apps.googleusercontent.com
+spring.security.oauth2.client.registration.google.client-secret=d76mWftyucrEd1dbKrh9rNwl
+spring.security.oauth2.client.registration.google.redirect-uri=http://localhost:8090/user/auth/auth/login

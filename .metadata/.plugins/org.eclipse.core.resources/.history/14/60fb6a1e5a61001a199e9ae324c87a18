@@ -1,0 +1,43 @@
+package com.example.demo.service;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.model.User;
+import com.example.demo.repository.DataRepository;
+
+@Service
+public class AuthenticationService {
+
+	private static final String jwtSigningKey = "santander-induction";
+//    private static final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
+
+	public static Authentication getAuthentication(HttpServletRequest request) {
+
+		if (request.getCookies() != null) {
+			for (Cookie cookie : request.getCookies()) {
+				if (cookie.getName().equals("JWT-TOKEN")) {
+					String user;
+					try {
+						user = Jwts.parser().setSigningKey(jwtSigningKey).parseClaimsJws(cookie.getValue()).getBody()
+								.get("ps", String.class);
+
+					} catch (ExpiredJwtException exception) {
+						return null;
+					}
+					if (user != null) {
+						return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+}
+

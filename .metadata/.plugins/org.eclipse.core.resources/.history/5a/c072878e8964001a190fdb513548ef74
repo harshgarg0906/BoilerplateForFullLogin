@@ -1,0 +1,5 @@
+#spring.application.name= santander-induction-web
+#server.port = 8091
+eureka.client.registry-with-eureka= true
+eureka.client.fetch-registry = true
+
